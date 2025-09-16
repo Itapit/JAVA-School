@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>About - Demo App</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        .navbar { background: #333; padding: 10px; margin-bottom: 20px; }
+        .navbar a { color: white; text-decoration: none; margin-right: 15px; }
+        .content { max-width: 800px; margin: 0 auto; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <div style="float: right;">
+            <a href="/login">Login</a>
+        </div>
+    </nav>
+
+    <div class="content">
+        <h1>About This Application</h1>
+        <p>This is a Spring Security demonstration application showcasing role-based access control.</p>
+
+        <h2>Features</h2>
+        <ul>
+            <li>User authentication and authorization</li>
+            <li>Role-based access control (ADMIN and USER roles)</li>
+            <li>Secure password encryption</li>
+            <li>Session management</li>
+            <li>Different dashboards for different user roles</li>
+        </ul>
+
+        <h2>Technology Stack</h2>
+        <ul>
+            <li>Spring Boot 3.x</li>
+            <li>Spring Security 6.x</li>
+            <li>Spring Data JPA</li>
+            <li>MySQL Database</li>
+            <li>Thymeleaf Templates</li>
+            <li>Lombok</li>
+        </ul>
+    </div>
+</body>
+</html>
+

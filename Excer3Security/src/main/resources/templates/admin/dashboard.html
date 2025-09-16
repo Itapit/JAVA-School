@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        .navbar { background: #333; padding: 10px; margin-bottom: 20px; }
+        .navbar a { color: white; text-decoration: none; margin-right: 15px; }
+        .dashboard { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .card { background: #f8f9fa; border: 1px solid #ddd; padding: 20px; border-radius: 5px; }
+        .card h3 { margin-top: 0; color: #333; }
+        .btn { background: #007bff; color: white; padding: 10px 15px; text-decoration: none; border-radius: 3px; display: inline-block; margin: 5px; }
+        .btn-danger { background: #dc3545; }
+        .stats { font-size: 24px; font-weight: bold; color: #007bff; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/">Home</a>
+        <a href="/admin/dashboard">Admin Dashboard</a>
+        <a href="/admin/users">Manage Users</a>
+        <a href="/admin/roles">Manage Roles</a>
+        <a href="/admin/reports">Reports</a>
+        <div style="float: right;">
+            <span>Welcome, <span sec:authentication="name"></span> (Admin)</span>
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+
+    <div class="content">
+        <h1>Admin Dashboard</h1>
+
+        <div class="dashboard">
+            <div class="card">
+                <h3>Users</h3>
+                <div class="stats" th:text="${userCount}">0</div>
+                <p>Total registered users</p>
+                <a href="/admin/users" class="btn">Manage Users</a>
+            </div>
+
+            <div class="card">
+                <h3>Roles</h3>
+                <div class="stats" th:text="${roleCount}">0</div>
+                <p>Available roles</p>
+                <a href="/admin/roles" class="btn">Manage Roles</a>
+            </div>
+
+            <div class="card">
+                <h3>Quick Actions</h3>
+                <a href="/admin/users/create" class="btn">Create User</a>
+                <a href="/admin/reports" class="btn">View Reports</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

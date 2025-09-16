@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>User Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        .navbar { background: #333; padding: 10px; margin-bottom: 20px; }
+        .navbar a { color: white; text-decoration: none; margin-right: 15px; }
+        .dashboard { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .card { background: #f8f9fa; border: 1px solid #ddd; padding: 20px; border-radius: 5px; }
+        .card h3 { margin-top: 0; color: #333; }
+        .btn { background: #007bff; color: white; padding: 10px 15px; text-decoration: none; border-radius: 3px; display: inline-block; margin: 5px; }
+        .user-info { background: #e9ecef; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/">Home</a>
+        <a href="/user/dashboard">Dashboard</a>
+        <a href="/user/profile">Profile</a>
+        <a href="/user/settings">Settings</a>
+        <a href="/user/activity">Activity</a>
+        <div style="float: right;">
+            <span>Welcome, <span sec:authentication="name"></span></span>
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+
+    <div class="content">
+        <h1>User Dashboard</h1>
+
+        <div class="user-info">
+            <h3>Your Account</h3>
+            <p><strong>Username:</strong> <span th:text="${user.username}"></span></p>
+            <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+            <p><strong>Roles:</strong>
+                <span th:each="role,iterStat : ${user.roles}">
+                    <span th:text="${role.name}"></span><span th:if="!${iterStat.last}">, </span>
+                </span>
+            </p>
+        </div>
+
+        <div class="dashboard">
+            <div class="card">
+                <h3>Profile Management</h3>
+                <p>Update your personal information and account settings</p>
+                <a href="/user/profile" class="btn">View Profile</a>
+                <a href="/user/profile/edit" class="btn">Edit Profile</a>
+            </div>
+
+            <div class="card">
+                <h3>Account Settings</h3>
+                <p>Manage your account preferences and security settings</p>
+                <a href="/user/settings" class="btn">Settings</a>
+            </div>
+
+            <div class="card">
+                <h3>Activity Log</h3>
+                <p>View your recent account activity and login history</p>
+                <a href="/user/activity" class="btn">View Activity</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

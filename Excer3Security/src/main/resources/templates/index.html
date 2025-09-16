@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo App - Home</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        .navbar { background: #333; padding: 10px; margin-bottom: 20px; }
+        .navbar a { color: white; text-decoration: none; margin-right: 15px; }
+        .content { max-width: 800px; margin: 0 auto; }
+        .btn { background: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <div style="float: right;">
+            <span sec:authorize="isAuthenticated()">
+                Welcome, <span sec:authentication="name"></span>!
+                <a href="/dashboard">Dashboard</a>
+                <a href="/logout">Logout</a>
+            </span>
+            <span sec:authorize="!isAuthenticated()">
+                <a href="/login">Login</a>
+            </span>
+        </div>
+    </nav>
+
+    <div class="content">
+        <h1>Welcome to Demo App</h1>
+        <p>This is a Spring Security demo application with role-based access control.</p>
+
+        <div sec:authorize="!isAuthenticated()">
+            <h3>Get Started</h3>
+            <p>Please <a href="/login" class="btn">Login</a> to access the application features.</p>
+
+            <h3>Test Accounts</h3>
+            <ul>
+                <li><strong>Admin:</strong> username=admin, password=admin123</li>
+                <li><strong>User:</strong> username=user, password=user123</li>
+            </ul>
+        </div>
+
+        <div sec:authorize="isAuthenticated()">
+            <p>You are logged in! <a href="/dashboard" class="btn">Go to Dashboard</a></p>
+        </div>
+    </div>
+</body>
+</html>
+
